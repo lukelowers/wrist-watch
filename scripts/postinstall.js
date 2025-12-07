@@ -2,7 +2,7 @@
 
 // Only show the banner if this is a user installation (not during development)
 const isDevInstall = process.env.npm_config_global || 
-                     process.env.npm_package_name === 'wrist-watch';
+                     process.env.npm_package_name === '@lukelowers/wrist-watch';
 
 if (!isDevInstall) {
   const version = require('../package.json').version;

@@ -2,7 +2,6 @@ src/
 tests/
 test-project/
 test-project2/
-.kiro/
 .vscode/
 node_modules/
 coverage/
@@ -10,6 +9,7 @@ coverage/
 *.spec.ts
 *.test.js
 *.mjs
+.kiro/
 test-*.js
 test-*.mjs
 test-*.html
@@ -20,8 +20,5 @@ tsconfig.json
 tsup.config.ts
 .gitignore
 .git/
-BUILD.md
-BUNDLE-VERIFICATION.md
-TEST-RESULTS.md
-LOCAL-TESTING-INSTRUCTIONS.md
-README_OLD.md
+PRE-PUBLICATION-SUCCESS.md
+RELEASE.md

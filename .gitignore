@@ -19,6 +19,5 @@ Thumbs.db
 .env.*.local
 *.tgz
 package-lock.json
-PRE-PUBLICATION-CHECKLIST.md
-PRE-PUBLICATION-STATUS.md
+PRE-PUBLICATION-SUCCESS.md
 RELEASE.md
