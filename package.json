@@ -1,0 +1,60 @@
+{
+  "name": "wrist-watch",
+  "version": "1.0.0",
+  "description": "A lightweight, zero-dependency npm library for quick and convenient date/time operations",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "scripts"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build:analyze": "tsup --metafile",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest --run --coverage",
+    "test:node": "node test-node.js && node test-esm.mjs",
+    "verify:bundle": "node verify-bundle.js",
+    "typecheck": "tsc --noEmit",
+    "postinstall": "node scripts/postinstall.js",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build && npm run verify:bundle"
+  },
+  "keywords": [
+    "date",
+    "time",
+    "datetime",
+    "formatting",
+    "parsing",
+    "timezone",
+    "lightweight"
+  ],
+  "author": "itswiz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/wrist-watch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/wrist-watch/issues"
+  },
+  "homepage": "https://github.com/yourusername/wrist-watch#readme",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "fast-check": "^3.15.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.4"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
