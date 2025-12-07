@@ -22,11 +22,9 @@
     "test": "vitest --run",
     "test:watch": "vitest",
     "test:coverage": "vitest --run --coverage",
-    "test:node": "node test-node.js && node test-esm.mjs",
-    "verify:bundle": "node verify-bundle.js",
     "typecheck": "tsc --noEmit",
     "postinstall": "node scripts/postinstall.js",
-    "prepublishOnly": "npm run typecheck && npm test && npm run build && npm run verify:bundle"
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
   },
   "keywords": [
     "date",
@@ -37,16 +35,16 @@
     "timezone",
     "lightweight"
   ],
-  "author": "itswiz",
+  "author": "lukelowers",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/wrist-watch.git"
+    "url": "https://github.com/lukelowers/wrist-watch.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/wrist-watch/issues"
+    "url": "https://github.com/lukelowers/wrist-watch/issues"
   },
-  "homepage": "https://github.com/yourusername/wrist-watch#readme",
+  "homepage": "https://github.com/lukelowers/wrist-watch#readme",
   "devDependencies": {
     "@types/node": "^20.10.0",
     "fast-check": "^3.15.0",

@@ -626,11 +626,11 @@ import * as wristwatch from 'wrist-watch';
 
 
 ## License
-MIT © [itswiz]
+MIT © [lukelowers]
 
 
 ## Links
 
 - [npm package](https://www.npmjs.com/package/wrist-watch)
-- [GitHub repository](https://github.com/yourusername/wrist-watch)
-- [Issue tracker](https://github.com/yourusername/wrist-watch/issues)
+- [GitHub repository](https://github.com/lukelowers/wrist-watch)
+- [Issue tracker](https://github.com/lukelowers/wrist-watch/issues)
