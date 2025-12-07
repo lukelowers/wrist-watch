@@ -1,6 +1,7 @@
 # WristWatch
 [![npm version](https://img.shields.io/npm/v/@lukelowers/wrist-watch.svg)](https://www.npmjs.com/package/@lukelowers/wrist-watch)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![GitHub](https://img.shields.io/badge/GitHub-wrist--watch-blue?logo=github)](https://github.com/lukelowers/wrist-watch)
 
 A tiny date/time library that doesn't suck. JavaScript's `Date` was based on `java.util.Date` for backwards compatibility reasons and it shows. WristWatch wraps the native Date API with functions that are actually easy to remember and use.
 
