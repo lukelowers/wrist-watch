@@ -1,5 +1,5 @@
 # WristWatch
-[![npm version](https://img.shields.io/npm/v/wrist-watch.svg)](https://www.npmjs.com/package/wrist-watch)
+[![npm version](https://img.shields.io/npm/v/@lukelowers/wrist-watch.svg)](https://www.npmjs.com/package/@lukelowers/wrist-watch)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 A tiny date/time library that doesn't suck. JavaScript's `Date` was based on `java.util.Date` for backwards compatibility reasons and it shows. WristWatch wraps the native Date API with functions that are actually easy to remember and use.
@@ -25,21 +25,21 @@ Because `new Date().toISOString()` is annoying and `date.getMonth()` returning 0
 ## Installation
 
 ```bash
-npm install wrist-watch
+npm install @lukelowers/wrist-watch
 ```
 
 ```bash
-yarn add wrist-watch
+yarn add @lukelowers/wrist-watch
 ```
 
 ```bash
-pnpm add wrist-watch
+pnpm add @lukelowers/wrist-watch
 ```
 
 ## Quick Start
 
 ```typescript
-import { WristWatch, now } from 'wrist-watch';
+import { WristWatch, now } from '@lukelowers/wrist-watch';
 
 // Get current time
 const currentTime = now();
@@ -72,7 +72,7 @@ if (tomorrow.isAfter(currentTime)) {
 ### Creating WristWatch Instances
 
 ```typescript
-import { WristWatch, now, parse, parseISO } from 'wrist-watch';
+import { WristWatch, now, parse, parseISO } from '@lukelowers/wrist-watch';
 
 // Current time
 const currentTime = now();
@@ -291,7 +291,7 @@ if (invalid === null) {
 ### Parsing Dates
 
 ```typescript
-import { parse, parseISO, parseTimestamp, parseCustom } from 'wrist-watch';
+import { parse, parseISO, parseTimestamp, parseCustom } from '@lukelowers/wrist-watch';
 
 // General parse (tries multiple formats)
 const result1 = parse('2025-12-05T10:30:00Z');
@@ -366,7 +366,7 @@ const iso = date.toISO(); // "2025-12-05T14:30:45.123Z"
 ### Object-Oriented Style
 
 ```typescript
-import { WristWatch } from 'wrist-watch';
+import { WristWatch } from '@lukelowers/wrist-watch';
 
 const ww = WristWatch.now();
 const formatted = ww.format('YYYY-MM-DD');
@@ -377,7 +377,7 @@ const isInFuture = tomorrow.isAfter(ww);
 ### Functional Style
 
 ```typescript
-import { now, format, add, isAfter } from 'wrist-watch';
+import { now, format, add, isAfter } from '@lukelowers/wrist-watch';
 
 const date = now();
 const formatted = format(date.getDate(), 'YYYY-MM-DD');
@@ -389,12 +389,12 @@ const isInFuture = isAfter(tomorrow, date.getDate());
 
 ```typescript
 // Method chaining
-import { WristWatch } from 'wrist-watch';
+import { WristWatch } from '@lukelowers/wrist-watch';
 const ww = WristWatch.now();
 ww.add(1, 'day').format('YYYY-MM-DD');
 
 // Functional
-import { now, format, add } from 'wrist-watch';
+import { now, format, add } from '@lukelowers/wrist-watch';
 const date = now();
 format(add(date.getDate(), 1, 'day'), 'YYYY-MM-DD');
 ```
@@ -404,7 +404,7 @@ format(add(date.getDate(), 1, 'day'), 'YYYY-MM-DD');
 Fully typed out of the box:
 
 ```typescript
-import { TimeUnit, ParseResult } from 'wrist-watch';
+import { TimeUnit, ParseResult } from '@lukelowers/wrist-watch';
 
 const unit: TimeUnit = 'day';
 const result: ParseResult<WristWatch> = parse('2025-12-05');
@@ -618,10 +618,10 @@ Import only what you need:
 
 ```typescript
 // Specific
-import { now, format, add } from 'wrist-watch';
+import { now, format, add } from '@lukelowers/wrist-watch';
 
 // Imports everything
-import * as wristwatch from 'wrist-watch';
+import * as wristwatch from '@lukelowers/wrist-watch';
 ```
 
 
@@ -631,6 +631,6 @@ MIT © [lukelowers]
 
 ## Links
 
-- [npm package](https://www.npmjs.com/package/wrist-watch)
+- [npm package](https://www.npmjs.com/package/@lukelowers/wrist-watch)
 - [GitHub repository](https://github.com/lukelowers/wrist-watch)
 - [Issue tracker](https://github.com/lukelowers/wrist-watch/issues)
