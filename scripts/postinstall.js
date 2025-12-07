@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
-// Only show the banner if this is a user installation (not during development)
-const isDevInstall = process.env.npm_config_global || 
-                     process.env.npm_package_name === '@lukelowers/wrist-watch';
+// Show the banner for user installations (skip for global installs)
+const isGlobalInstall = process.env.npm_config_global;
 
-if (!isDevInstall) {
+if (!isGlobalInstall) {
   const version = require('../package.json').version;
   
   console.log('');
