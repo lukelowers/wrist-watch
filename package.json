@@ -1,6 +1,6 @@
 {
   "name": "@lukelowers/wrist-watch",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A lightweight, zero-dependency npm library for quick and convenient date/time operations",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
