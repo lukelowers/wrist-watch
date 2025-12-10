@@ -15,11 +15,15 @@ const PARSE_TOKENS: Record<string, RegExp> = {
   'D': /(\d{1,2})/,            // 1 or 2-digit day
   'HH': /(\d{2})/,             // 2-digit hour (24h)
   'H': /(\d{1,2})/,            // 1 or 2-digit hour (24h)
+  'hh': /(\d{2})/,             // 2-digit hour (12h)
+  'h': /(\d{1,2})/,            // 1 or 2-digit hour (12h)
   'mm': /(\d{2})/,             // 2-digit minute
   'm': /(\d{1,2})/,            // 1 or 2-digit minute
   'ss': /(\d{2})/,             // 2-digit second
   's': /(\d{1,2})/,            // 1 or 2-digit second
   'SSS': /(\d{3})/,            // 3-digit millisecond
+  'A': /(AM|PM)/,              // AM/PM uppercase
+  'a': /(am|pm)/,              // am/pm lowercase
 };
 
 const MONTH_NAMES_FULL = [
@@ -47,11 +51,15 @@ const MONTH_NAMES_SHORT = [
  *   console.log(result1.value.getYear()); // 2025
  * }
  * 
- * // Parse with time
+ * // Parse with 24-hour time
  * const result2 = parseCustom('2025-12-05 14:30:45', 'YYYY-MM-DD HH:mm:ss');
  * 
+ * // Parse with 12-hour time
+ * const result3 = parseCustom('12/05/2025 2:30:45 PM', 'MM/DD/YYYY h:mm:ss A');
+ * const result4 = parseCustom('2025-12-05 02:30 pm', 'YYYY-MM-DD hh:mm a');
+ * 
  * // Parse with month name
- * const result3 = parseCustom('December 5, 2025', 'MMMM D, YYYY');
+ * const result5 = parseCustom('December 5, 2025', 'MMMM D, YYYY');
  * 
  * // Handle parse errors
  * const result4 = parseCustom('invalid', 'YYYY-MM-DD');
@@ -69,13 +77,17 @@ const MONTH_NAMES_SHORT = [
  * - M: 1 or 2-digit month (1-12)
  * - DD: 2-digit day (01-31)
  * - D: 1 or 2-digit day (1-31)
- * - HH: 2-digit hour (00-23)
- * - H: 1 or 2-digit hour (0-23)
+ * - HH: 2-digit hour in 24-hour format (00-23)
+ * - H: 1 or 2-digit hour in 24-hour format (0-23)
+ * - hh: 2-digit hour in 12-hour format (01-12)
+ * - h: 1 or 2-digit hour in 12-hour format (1-12)
  * - mm: 2-digit minute (00-59)
  * - m: 1 or 2-digit minute (0-59)
  * - ss: 2-digit second (00-59)
  * - s: 1 or 2-digit second (0-59)
  * - SSS: 3-digit millisecond (000-999)
+ * - A: AM/PM uppercase (AM, PM)
+ * - a: am/pm lowercase (am, pm)
  */
 export function parseCustom(input: string, format: string): ParseResult<WristWatch> {
   if (typeof input !== 'string' || typeof format !== 'string') {
@@ -168,6 +180,7 @@ export function parseCustom(input: string, format: string): ParseResult<WristWat
     let minute = 0;
     let second = 0;
     let millisecond = 0;
+    let isPM = false;
 
     // Year
     if (values['YYYY']) {
@@ -206,11 +219,34 @@ export function parseCustom(input: string, format: string): ParseResult<WristWat
       day = parseInt(values['D'], 10);
     }
 
+    // AM/PM
+    if (values['A']) {
+      isPM = values['A'].toUpperCase() === 'PM';
+    } else if (values['a']) {
+      isPM = values['a'].toLowerCase() === 'pm';
+    }
+
     // Hour
     if (values['HH']) {
       hour = parseInt(values['HH'], 10);
     } else if (values['H']) {
       hour = parseInt(values['H'], 10);
+    } else if (values['hh']) {
+      hour = parseInt(values['hh'], 10);
+      // Convert 12-hour to 24-hour format
+      if (hour === 12) {
+        hour = isPM ? 12 : 0;
+      } else {
+        hour = isPM ? hour + 12 : hour;
+      }
+    } else if (values['h']) {
+      hour = parseInt(values['h'], 10);
+      // Convert 12-hour to 24-hour format
+      if (hour === 12) {
+        hour = isPM ? 12 : 0;
+      } else {
+        hour = isPM ? hour + 12 : hour;
+      }
     }
 
     // Minute

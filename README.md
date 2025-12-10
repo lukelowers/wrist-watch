@@ -115,9 +115,14 @@ date.format('YYYY-MM-DD');              // "2025-12-06"
 date.format('HH:mm:ss');                // "14:30:45"
 date.format('YYYY-MM-DD HH:mm:ss');     // "2025-12-06 14:30:45"
 
+// 12-hour time formats
+date.format('h:mm A');                  // "2:30 PM"
+date.format('hh:mm:ss a');              // "02:30:45 pm"
+date.format('MM/DD/YYYY h:mm A');       // "12/06/2025 2:30 PM"
+
 // Long formats with names
 date.format('MMMM D, YYYY');            // "December 6, 2025"
-date.format('dddd, MMM D [at] HH:mm');  // "Friday, Dec 6 at 14:30"
+date.format('dddd, MMM D [at] h:mm A'); // "Friday, Dec 6 at 2:30 PM"
 
 // Custom separators
 date.format('DD/MM/YYYY');              // "06/12/2025"
@@ -139,12 +144,16 @@ date.format('MM-DD-YY');                // "12-06-25"
 | `dddd` | Full day name | Friday |
 | `ddd` | Short day name | Fri |
 | `HH` | 2-digit hour (24h) | 14 |
-| `H` | Hour without leading zero | 14 |
+| `H` | Hour without leading zero (24h) | 14 |
+| `hh` | 2-digit hour (12h) | 02 |
+| `h` | Hour without leading zero (12h) | 2 |
 | `mm` | 2-digit minute | 30 |
 | `m` | Minute without leading zero | 30 |
 | `ss` | 2-digit second | 45 |
 | `s` | Second without leading zero | 45 |
 | `SSS` | 3-digit millisecond | 123 |
+| `A` | AM/PM uppercase | PM |
+| `a` | am/pm lowercase | pm |
 
 #### Locale-Aware Formatting
 
@@ -313,6 +322,10 @@ const result3 = parseCustom('12/05/2025', 'MM/DD/YYYY');
 if (result3.success) {
   console.log(result3.value.format('YYYY-MM-DD')); // "2025-12-05"
 }
+
+// Parse 12-hour time formats
+const result4 = parseCustom('12/05/2025 2:30 PM', 'MM/DD/YYYY h:mm A');
+const result5 = parseCustom('2025-12-05 02:30:45 pm', 'YYYY-MM-DD hh:mm:ss a');
 ```
 
 ### Accessing Date Components

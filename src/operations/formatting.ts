@@ -57,9 +57,13 @@ function createFormatTokens(date: Date): FormatTokens {
     'dddd': () => DAY_NAMES[date.getDay()],
     'ddd': () => DAY_NAMES_SHORT[date.getDay()],
     
-    // Hours
+    // Hours (24-hour format)
     'HH': () => padZero(date.getHours()),
     'H': () => String(date.getHours()),
+    
+    // Hours (12-hour format)
+    'hh': () => padZero(date.getHours() % 12 || 12),
+    'h': () => String(date.getHours() % 12 || 12),
     
     // Minutes
     'mm': () => padZero(date.getMinutes()),
@@ -71,6 +75,10 @@ function createFormatTokens(date: Date): FormatTokens {
     
     // Milliseconds
     'SSS': () => padZero(date.getMilliseconds(), 3),
+    
+    // AM/PM
+    'A': () => date.getHours() >= 12 ? 'PM' : 'AM',
+    'a': () => date.getHours() >= 12 ? 'pm' : 'am',
   };
 }
 
@@ -88,14 +96,18 @@ function createFormatTokens(date: Date): FormatTokens {
  * // Basic date format
  * format(date, 'YYYY-MM-DD'); // "2025-12-05"
  * 
- * // Date and time
+ * // Date and time (24-hour)
  * format(date, 'YYYY-MM-DD HH:mm:ss'); // "2025-12-05 14:30:45"
+ * 
+ * // Date and time (12-hour)
+ * format(date, 'YYYY-MM-DD h:mm:ss A'); // "2025-12-05 2:30:45 PM"
+ * format(date, 'MM/DD/YYYY hh:mm a'); // "12/05/2025 02:30 pm"
  * 
  * // Long format with month name
  * format(date, 'MMMM D, YYYY'); // "December 5, 2025"
  * 
  * // Custom format
- * format(date, 'dddd, MMM D [at] HH:mm'); // "Friday, Dec 5 at 14:30"
+ * format(date, 'dddd, MMM D [at] h:mm A'); // "Friday, Dec 5 at 2:30 PM"
  * 
  * @remarks
  * Supported format tokens:
@@ -109,13 +121,17 @@ function createFormatTokens(date: Date): FormatTokens {
  * - D: Day without leading zero (e.g., "5")
  * - dddd: Full day name (e.g., "Friday")
  * - ddd: Short day name (e.g., "Fri")
- * - HH: 2-digit hour (e.g., "14")
- * - H: Hour without leading zero (e.g., "14")
+ * - HH: 2-digit hour in 24-hour format (e.g., "14")
+ * - H: Hour in 24-hour format without leading zero (e.g., "14")
+ * - hh: 2-digit hour in 12-hour format (e.g., "02")
+ * - h: Hour in 12-hour format without leading zero (e.g., "2")
  * - mm: 2-digit minute (e.g., "30")
  * - m: Minute without leading zero (e.g., "30")
  * - ss: 2-digit second (e.g., "45")
  * - s: Second without leading zero (e.g., "45")
  * - SSS: 3-digit millisecond (e.g., "000")
+ * - A: AM/PM uppercase (e.g., "PM")
+ * - a: am/pm lowercase (e.g., "pm")
  * 
  * Text within square brackets [] is treated as literal text and not parsed for tokens.
  */
